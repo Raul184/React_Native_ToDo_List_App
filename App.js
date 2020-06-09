@@ -1,25 +1,25 @@
 import React , { useState } from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput, FlatList } from 'react-native';
+import Header from './components/header/header'
+
 
 export default function App() {
-  const [ name , setName ] = useState('Test')
-  const [ age , setAge ] = useState(0)
+  const [todos , setTodos] = useState([
+    {text: 'Take the rubbish out' , key: '1'},
+    {text: 'Buy milk & coffee' , key: '2'},
+    {text: 'Wash the car' , key: '3'},
+  ])
   return (
     <View style={styles.container}>
-      <Text>Please provide your name:</Text>
-      <TextInput 
-        multiline
-        style={styles.input}
-        placeholder='Your name'
-        onChangeText={val => setName(val)}
-      />
-      <Text>Please provide your age:</Text>
-      <TextInput 
-        keyboardType='numeric'
-        style={styles.input}
-        placeholder='Your name'
-        onChangeText={val => setAge(val)}
-      />
+      <Header />
+      <View style={styles.content}>
+        <View style={styles.list}>
+          <FlatList
+            data={todos}
+            renderItem={({item}) => <Text>{item.text}</Text> }             
+          />
+        </View>
+      </View>
     </View>
   );
 }
@@ -29,13 +29,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
   },
-  input: {
-    borderWidth: 1 ,
-    borderColor: '#777',
-    padding: 8 ,
-    margin:10,
-    width: 200
+  content: {
+    padding: 40
+  },
+  list: {
+    marginTop: 20
   }
 });
