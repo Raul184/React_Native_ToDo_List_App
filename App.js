@@ -1,7 +1,9 @@
 import React , { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList , Alert } from 'react-native';
+import { v4 as uuidv4 } from 'uuid'; 
 import Header from './components/header/header'
-
+import TodoForm from './components/TodoForm/TodoForm'
+import TodoItem from './components/todoItem/TodoItem'
 
 export default function App() {
   const [todos , setTodos] = useState([
@@ -9,14 +11,37 @@ export default function App() {
     {text: 'Buy milk & coffee' , key: '2'},
     {text: 'Wash the car' , key: '3'},
   ])
+
+  const handlePress = key => {
+    setTodos( prevState => {
+      return prevState.filter(el => el.key != key)
+    })
+  }
+
+  const addTodo = nueTodo => {
+    if(nueTodo.length > 3){
+      setTodos(prevState => [ 
+        ...prevState , 
+        {text: nueTodo , key: uuidv4()} 
+      ])
+    }
+    else{
+      console.log('running')
+      Alert.alert('Ups','Please write a note to remember',[
+        {text:'Ok' , onPress: () => console.log('chao!')}
+      ]);
+    }
+  }
+
   return (
     <View style={styles.container}>
       <Header />
       <View style={styles.content}>
+        <TodoForm add={addTodo}/>
         <View style={styles.list}>
           <FlatList
             data={todos}
-            renderItem={({item}) => <Text>{item.text}</Text> }             
+            renderItem={({item}) => <TodoItem item={item} handle={handlePress}/> }             
           />
         </View>
       </View>
@@ -31,9 +56,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   content: {
-    padding: 40
+    padding: 5
   },
   list: {
-    marginTop: 20
+    marginTop: 15
   }
 });
