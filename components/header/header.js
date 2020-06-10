@@ -4,7 +4,7 @@ import { StyleSheet , View , Text} from 'react-native'
 const Header = () => {
   return (
     <View style={styles.header}>
-      <Text style={styles.title}>To Do's</Text>      
+      <Text style={styles.title}>Got to do!</Text>      
     </View>
   )
 }
@@ -12,8 +12,8 @@ const Header = () => {
 const styles = StyleSheet.create({
   header: {
     width: '100%',
-    height: 60,
-    paddingTop: 15,
+    height: 100,
+    paddingTop: 50,
     backgroundColor: 'lightblue'
   },
   title: {

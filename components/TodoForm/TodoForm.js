@@ -6,6 +6,7 @@ const TodoForm = ({add}) => {
 
   const addTodo = nueTodo => {
     add(nueTodo)
+    setNueTodo('')
   }
   return (
     <View>
