@@ -1,5 +1,5 @@
 import React , { useState } from 'react';
-import { StyleSheet, Text, View, FlatList , Alert } from 'react-native';
+import { StyleSheet, Text, View, FlatList , Alert, TouchableWithoutFeedback , Keyboard} from 'react-native';
 import { v4 as uuidv4 } from 'uuid'; 
 import Header from './components/header/header'
 import TodoForm from './components/TodoForm/TodoForm'
@@ -34,18 +34,20 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <Header />
-      <View style={styles.content}>
-        <TodoForm add={addTodo}/>
-        <View style={styles.list}>
-          <FlatList
-            data={todos}
-            renderItem={({item}) => <TodoItem item={item} handle={handlePress}/> }             
-          />
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View style={styles.container}>
+        <Header />
+        <View style={styles.content}>
+          <TodoForm add={addTodo}/>
+          <View style={styles.list}>
+            <FlatList
+              data={todos}
+              renderItem={({item}) => <TodoItem item={item} handle={handlePress}/> }             
+            />
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 }
 
