@@ -39,7 +39,7 @@ export default function App() {
   }
 
   return (
-    // <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
         <Header />
         <View style={styles.content}>
@@ -54,7 +54,7 @@ export default function App() {
           </View>
         </View>
       </View>
-    // </TouchableWithoutFeedback>
+    </TouchableWithoutFeedback>
   );
 }
 
