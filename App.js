@@ -11,6 +11,7 @@ import Header from './components/header/header'
 import TodoForm from './components/TodoForm/TodoForm'
 import TodoItem from './components/todoItem/TodoItem'
 
+
 export default function App() {
   const [todos , setTodos] = useState([])
 
@@ -38,7 +39,7 @@ export default function App() {
   }
 
   return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+    // <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
         <Header />
         <View style={styles.content}>
@@ -53,7 +54,7 @@ export default function App() {
           </View>
         </View>
       </View>
-    </TouchableWithoutFeedback>
+    // </TouchableWithoutFeedback>
   );
 }
 
